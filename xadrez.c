@@ -1,90 +1,115 @@
 #include <stdio.h>
 
+/*
+ * Função recursiva da Torre
+ * Movimento: Direita
+ */
+void moverTorre(int casas) {
+    if (casas == 0) {
+        return;
+    }
+
+    printf("Direita\n");
+    moverTorre(casas - 1);
+}
+
+/*
+ * Função recursiva da Rainha
+ * Movimento: Esquerda
+ */
+void moverRainha(int casas) {
+    if (casas == 0) {
+        return;
+    }
+
+    printf("Esquerda\n");
+    moverRainha(casas - 1);
+}
+
+/*
+ * Função recursiva do Bispo
+ * Movimento: Diagonal (Cima + Direita)
+ *
+ * Utiliza loops aninhados:
+ * - for externo = movimento vertical
+ * - while interno = movimento horizontal
+ */
+void moverBispo(int casas) {
+    if (casas == 0) {
+        return;
+    }
+
+    int vertical;
+    int horizontal;
+
+    /* Loop externo: vertical */
+    for (vertical = 1; vertical <= 1; vertical++) {
+
+        horizontal = 1;
+
+        /* Loop interno: horizontal */
+        while (horizontal <= 1) {
+            printf("Cima\n");
+            printf("Direita\n");
+            horizontal++;
+        }
+    }
+
+    moverBispo(casas - 1);
+}
+
 int main() {
 
-    // Quantidade de casas que cada peça irá se mover
+    /* Quantidade de movimentos */
     int casasTorre = 5;
     int casasBispo = 5;
     int casasRainha = 8;
 
-    int i;
-
-    /*
-     * TORRE
-     * Movimento: 5 casas para a direita
-     * Estrutura utilizada: FOR
-     */
     printf("Movimento da Torre:\n");
-
-    for (i = 1; i <= casasTorre; i++) {
-        printf("Direita\n");
-    }
+    moverTorre(casasTorre);
 
     printf("\n");
 
-    /*
-     * BISPO
-     * Movimento: 5 casas na diagonal
-     * (Cima e Direita)
-     * Estrutura utilizada: WHILE
-     */
     printf("Movimento do Bispo:\n");
-
-    i = 1;
-
-    while (i <= casasBispo) {
-        printf("Cima Direita\n");
-        i++;
-    }
+    moverBispo(casasBispo);
 
     printf("\n");
 
-    /*
-     * RAINHA
-     * Movimento: 8 casas para a esquerda
-     * Estrutura utilizada: DO-WHILE
-     */
     printf("Movimento da Rainha:\n");
-
-    i = 1;
-
-    do {
-        printf("Esquerda\n");
-        i++;
-    } while (i <= casasRainha);
+    moverRainha(casasRainha);
 
     printf("\n");
 
     /*
      * CAVALO
      * Movimento em "L":
-     * 2 casas para Baixo e 1 casa para Esquerda.
+     * 2 casas para Cima
+     * 1 casa para Direita
      *
-     * Estruturas utilizadas:
-     * - FOR (loop externo)
-     * - WHILE (loop interno)
-     *
-     * O FOR controla a etapa vertical do movimento.
-     * O WHILE executa as duas movimentações para baixo.
-     * Após concluir as duas casas para baixo,
-     * o programa move uma casa para a esquerda.
+     * Loops aninhados com múltiplas variáveis,
+     * utilizando continue e break.
      */
     printf("Movimento do Cavalo:\n");
 
-    int casasBaixo = 2;
-    int casasEsquerda = 1;
-    int contador;
+    int linha;
+    int coluna;
 
-    for (i = 1; i <= 1; i++) {
+    for (linha = 1; linha <= 2; linha++) {
 
-        contador = 1;
-
-        while (contador <= casasBaixo) {
-            printf("Baixo\n");
-            contador++;
+        /* Exemplo de uso do continue */
+        if (linha == 0) {
+            continue;
         }
 
-        printf("Esquerda\n");
+        printf("Cima\n");
+
+        for (coluna = 1; coluna <= 1; coluna++) {
+
+            printf("Direita\n");
+
+            /* Exemplo de uso do break */
+            break;
+        }
     }
 
     return 0;
